@@ -1,6 +1,6 @@
 using Expenses.ApplicationCore.Models;
 
-namespace Expenses.ApplicationCore.Interfaces;
+namespace Expenses.ApplicationCore.Interfaces.Users;
 
 public interface IUserRegistrationService
 {

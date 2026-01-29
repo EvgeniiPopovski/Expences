@@ -21,4 +21,8 @@
       <ProjectReference Include="..\Expenses.ApplicationCore\Expenses.ApplicationCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

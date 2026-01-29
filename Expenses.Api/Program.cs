@@ -1,7 +1,9 @@
+using Expenses.ApplicationCore.Interfaces;
 using ExpensesApi.Settings;
 using Expenses.Infrastructure.Database;
 using Expenses.Infrastructure.Identity;
 using ExpensesApi.Modules;
+using ExpensesApi.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IHttpContextResolver, HttpContextResolver>();
 
 builder.Services
     .AddIdentity<IdentityApplicationUser, IdentityRole<int>>()

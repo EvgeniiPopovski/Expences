@@ -1,3 +1,6 @@
+using Expenses.ApplicationCore.Commands.Expenses.Create;
+using Expenses.ApplicationCore.Commands.Expenses.Get;
+using Expenses.ApplicationCore.Models.Expenses;
 using ExpensesApi.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -13,14 +16,22 @@ public class ExpensesController : BaseController
 
     [Authorize]
     [HttpGet]
-    public Task<string> GetExpenses()
+    public Task<ICollection<ExpenseModel>> GetExpenses(CancellationToken cancellationToken)
     {
-        return Task.FromResult("Expenses");
+        return Mediator.Send(new GetExpensesCommand(), cancellationToken);
     }
 
+    [Authorize]
     [HttpGet(Routes.Expenses.GetById)]
     public Task<string> GetExpensesById(int id)
     {
         return Task.FromResult(id.ToString());
+    }
+
+    [Authorize]
+    [HttpPost]
+    public Task CreateExpenses(CreateExpenseCommand command, CancellationToken cancellationToken)
+    {
+        return Mediator.Send(command, cancellationToken);
     }
 }

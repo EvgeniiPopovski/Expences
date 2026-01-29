@@ -1,4 +1,5 @@
 using Expenses.ApplicationCore.Interfaces;
+using Expenses.ApplicationCore.Interfaces.Users;
 using Expenses.ApplicationCore.Models;
 using MediatR;
 

@@ -1,5 +1,6 @@
 using Expenses.ApplicationCore.Entities;
 using Expenses.ApplicationCore.Interfaces;
+using Expenses.ApplicationCore.Interfaces.Users;
 using Expenses.ApplicationCore.Models;
 using Expenses.Infrastructure.Database;
 using Microsoft.AspNetCore.Identity;

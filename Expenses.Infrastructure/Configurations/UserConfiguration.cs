@@ -1,6 +1,7 @@
 using Expenses.ApplicationCore.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Expenses.Infrastructure.Configurations;
 
@@ -12,5 +13,10 @@ public class UserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(u => u.FirstName).IsRequired().HasMaxLength(100);
         builder.Property(u => u.LastName).IsRequired().HasMaxLength(100);
         builder.Property(u => u.Email).IsRequired().HasMaxLength(100);
+
+        builder.HasMany<Expense>()
+            .WithOne(c => c.Owner)
+            .HasForeignKey(c => c.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
