@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.ApplicationCore", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenses.Infrastructure", "Expenses.Infrastructure\Expenses.Infrastructure.csproj", "{13541686-2C8E-497A-9FB6-F6F717FC87EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGenerator", "ReportGenerator\ReportGenerator.csproj", "{6CEC20DB-0144-4605-B053-C33BFAEEA922}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{13541686-2C8E-497A-9FB6-F6F717FC87EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13541686-2C8E-497A-9FB6-F6F717FC87EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13541686-2C8E-497A-9FB6-F6F717FC87EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEC20DB-0144-4605-B053-C33BFAEEA922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEC20DB-0144-4605-B053-C33BFAEEA922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEC20DB-0144-4605-B053-C33BFAEEA922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEC20DB-0144-4605-B053-C33BFAEEA922}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

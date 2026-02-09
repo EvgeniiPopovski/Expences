@@ -20,5 +20,10 @@
     <ItemGroup>
       <ProjectReference Include="..\Expenses.Infrastructure\Expenses.Infrastructure.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Update="@(Content)">
+        <Visible Condition="'%(NuGetItemType)' == 'Content'">false</Visible>
+      </Content>
+    </ItemGroup>
 
 </Project>

@@ -6,6 +6,10 @@
 # dotenv files
 .env
 
+# appsettings.Development.json files (local development configuration)
+Expenses.Api/appsettings.Development.json
+ReportGenerator/appsettings.Development.json
+
 # User-specific files
 *.rsuser
 *.suo
