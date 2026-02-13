@@ -2,6 +2,7 @@ using Expenses.ApplicationCore.Interfaces;
 using ExpensesApi.Settings;
 using Expenses.Infrastructure.Database;
 using Expenses.Infrastructure.Identity;
+using ExpensesApi.Initializers;
 using ExpensesApi.Modules;
 using ExpensesApi.Services;
 using Microsoft.AspNetCore.Identity;
@@ -31,16 +32,8 @@ builder.Services.ConfigureAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-    var pendingMigrations = dbContext.Database.GetPendingMigrations();
-    if (pendingMigrations.Any())
-    {
-        dbContext.Database.Migrate();
-    }
-}
+app.MigrateDatabase();
+app.SetupExchanges();
 
 if (app.Environment.IsDevelopment())
 {

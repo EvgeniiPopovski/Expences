@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using Expenses.ApplicationCore.Interfaces.Messaging;
+using FileProcessor.Core.Interfaces;
 using Polly;
 using RabbitMQ.Client;
 
-namespace Expenses.Infrastructure.Messaging;
+namespace FileProcessor.Infrastructure.Messaging;
 
 public class RabbitMqMessagePublisher : IMessagePublisher
 {

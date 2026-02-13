@@ -17,7 +17,7 @@ public static class ServicesInstaller
         services.AddScoped<IJwtIssuer, JwtIssuer>();
         services.AddScoped<IUserLoginService, UserLoginService>();
 
-        services.AddSingleton<RabbitMqConnectionFactory>();
+        services.AddScoped<RabbitMqConnectionFactory>();
         services.AddSingleton<RabbitMqPolicyFactory>();
         services.AddScoped<IMessagePublisher, RabbitMqMessagePublisher>();
 

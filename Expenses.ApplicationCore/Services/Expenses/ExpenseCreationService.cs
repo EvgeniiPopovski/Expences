@@ -21,7 +21,7 @@ internal sealed class ExpenseCreationService : IExpenseCreationService
         _expenseCreationValidator = expenseCreationValidator;
     }
 
-    public async Task Create(CreateExpenseCommand command, CancellationToken cancellationToken)
+    public async Task<Expense> Create(CreateExpenseCommand command, CancellationToken cancellationToken)
     {
         if (!_expenseCreationValidator.IsValid(command))
         {
@@ -36,5 +36,7 @@ internal sealed class ExpenseCreationService : IExpenseCreationService
         };
 
         await _context.Expenses.AddAsync(expense, cancellationToken);
+
+        return expense;
     }
 }

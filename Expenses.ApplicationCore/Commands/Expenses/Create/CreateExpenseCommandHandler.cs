@@ -1,5 +1,7 @@
+using Expenses.ApplicationCore.Constants;
 using Expenses.ApplicationCore.Interfaces;
 using Expenses.ApplicationCore.Interfaces.Expenses;
+using Expenses.ApplicationCore.Interfaces.Messaging;
 using MediatR;
 
 namespace Expenses.ApplicationCore.Commands.Expenses.Create;
@@ -8,10 +10,12 @@ internal sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpens
 {
     private readonly IApplicationDbContext _context;
     private readonly IExpenseCreationService _expenseCreationService;
+    private readonly IMessagePublisher _messagePublisher;
 
     public CreateExpenseCommandHandler(
         IApplicationDbContext context,
-        IExpenseCreationService expenseCreationService)
+        IExpenseCreationService expenseCreationService,
+        IMessagePublisher messagePublisher)
     {
         _context = context;
         _expenseCreationService = expenseCreationService;
@@ -19,8 +23,10 @@ internal sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpens
 
     public async Task Handle(CreateExpenseCommand command, CancellationToken cancellationToken)
     {
-        await _expenseCreationService.Create(command, cancellationToken);
+        var expense = await _expenseCreationService.Create(command, cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);
+
+        await _messagePublisher.PublishAsync(expense, MessagingConstants.ExpensesExchange.Name, "expense.create", cancellationToken);
     }
 }

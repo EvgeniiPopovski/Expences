@@ -2,6 +2,7 @@ using Expenses.ApplicationCore.Enums;
 
 namespace Expenses.ApplicationCore.Entities;
 
+// TODO: Add property: decimal Amount, string Comment
 public class Expense
 {
     public int Id { get; set; }
