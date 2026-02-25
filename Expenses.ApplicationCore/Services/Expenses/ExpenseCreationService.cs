@@ -32,7 +32,9 @@ internal sealed class ExpenseCreationService : IExpenseCreationService
         {
             Name = command.Name,
             Category = command.Category,
-            OwnerId = _httpContextResolver.GetCurrentUserId()
+            OwnerId = _httpContextResolver.GetCurrentUserId(),
+            Amount = command.Amount,
+            Comment = command.Comment,
         };
 
         await _context.Expenses.AddAsync(expense, cancellationToken);

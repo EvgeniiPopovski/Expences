@@ -6,6 +6,9 @@
 # dotenv files
 .env
 
+# Qwen context file
+QWEN.md
+
 # appsettings.Development.json files (local development configuration)
 Expenses.Api/appsettings.Development.json
 ReportGenerator/appsettings.Development.json
