@@ -14,5 +14,13 @@ internal class FileInfoConfiguration : IEntityTypeConfiguration<FileInfo>
             .WithOne(r => r.FileInfo)
             .HasForeignKey<FileInfo>()
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property(fi => fi.FileName)
+            .HasMaxLength(100)
+            .IsRequired();
+        
+        builder.Property(fi => fi.Type)
+            .HasMaxLength(100)
+            .IsRequired();
     }
 }

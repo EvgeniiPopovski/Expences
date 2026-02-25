@@ -17,7 +17,6 @@ public record ExpenseCreatedEvent(
     {
         return new Expense
         {
-            Id = Id,
             Amount = Amount,
             Name = Name,
             Category = Category,
@@ -25,6 +24,7 @@ public record ExpenseCreatedEvent(
             OwnerName = OwnerName,
             CreatedAt = CreatedAt,
             Comment = Comment,
+            ExternalId = Id,
         };
     }
 }

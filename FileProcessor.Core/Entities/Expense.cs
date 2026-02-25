@@ -17,4 +17,6 @@ public class Expense : BaseEntity
     public DateTime CreatedAt { get; set; }
 
     public string Comment { get; set; }
+
+    public int ExternalId { get; set; }
 }
