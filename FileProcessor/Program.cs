@@ -1,3 +1,4 @@
+using FileProcessor.Core;
 using FileProcessor.Core.Interfaces;
 using FileProcessor.Infrastructure;
 using FileProcessor.Infrastructure.Database;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<FileProcessorContext>(options =>
 builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMqSettings"));
 builder.Services.Configure<MessagingPolicySettings>(builder.Configuration.GetSection("MessagingPolicySettings"));
 builder.Services.AddInfrastructureServices();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

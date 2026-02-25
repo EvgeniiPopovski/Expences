@@ -19,6 +19,7 @@ internal sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpens
     {
         _context = context;
         _expenseCreationService = expenseCreationService;
+        _messagePublisher = messagePublisher;
     }
 
     public async Task Handle(CreateExpenseCommand command, CancellationToken cancellationToken)
@@ -27,6 +28,10 @@ internal sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpens
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        await _messagePublisher.PublishAsync(expense, MessagingConstants.ExpensesExchange.Name, "expense.create", cancellationToken);
+        await _messagePublisher.PublishAsync(
+            expense,
+            ExchangesConstants.Exchanges.ExpensesExchange.Name,
+            QueuesConstants.CreateExpenses.RoutingKey,
+            cancellationToken);
     }
 }

@@ -1,6 +1,5 @@
 using Expenses.ApplicationCore.Constants;
 using Expenses.Infrastructure.Messaging;
-using ExpensesApi.Constants;
 
 namespace ExpensesApi.Initializers;
 
@@ -11,12 +10,17 @@ internal static class SetupExchangesExtension
         using (var scope = app.Services.CreateScope())
         {
             var factory = scope.ServiceProvider.GetRequiredService<RabbitMqConnectionFactory>();
-            using var connection = factory.GetConnection();
+            var connection = factory.GetConnection();
+            var chanel = connection.CreateModel();
 
-            foreach (var exchangeSettings in MessagingConstants.All)
+            foreach (var exchangeSettings in ExchangesConstants.Exchanges.All)
             {
-                var chanel = connection.CreateModel();
                 chanel.ExchangeDeclare(exchangeSettings.Name, exchangeSettings.Type, true, false, null);
+                foreach (var queueSettings in exchangeSettings.QueueSettings)
+                {
+                    chanel.QueueDeclare(queueSettings.Name, true, false, false, null);
+                    chanel.QueueBind(queueSettings.Name, exchangeSettings.Name, queueSettings.Key, null);
+                }
             }
         }
     }
