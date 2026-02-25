@@ -11,6 +11,10 @@ public class ExpenseModel
 
     public ExpenseCategory Category { get; set; }
 
+    public decimal Amount { get; set; }
+
+    public string Comment { get; set; }
+
     public static ExpenseModel MapFromEntity(Expense expense)
     {
         return new ExpenseModel()
@@ -18,6 +22,8 @@ public class ExpenseModel
             Id = expense.Id,
             Name = expense.Name,
             Category = expense.Category,
+            Amount = expense.Amount,
+            Comment = expense.Comment,
         };
     }
 }
