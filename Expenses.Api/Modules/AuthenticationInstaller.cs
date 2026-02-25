@@ -23,12 +23,13 @@ public static class AuthenticationInstaller
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = false,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtConfig.Issuer,
                     ValidAudience = jwtConfig.Audience,
                     NameClaimType = JwtRegisteredClaimNames.Sub,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
+                    ClockSkew = TimeSpan.Zero,
                 };
                 
                 options.Events = new JwtBearerEvents
